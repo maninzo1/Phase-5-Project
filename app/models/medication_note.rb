@@ -1,0 +1,2 @@
+class MedicationNote < ApplicationRecord
+end
