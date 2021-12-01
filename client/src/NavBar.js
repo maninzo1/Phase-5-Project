@@ -4,17 +4,18 @@ import { Link } from 'react-router-dom'
 function NavBar() {
     return (
     <div className = "navbar">    
-    <h2>WhatPill</h2>
+    <h2><Link to="/" style={{ textDecoration: 'none'}}>WhatPill</Link></h2>
     <ul>
         <li>
-            <Link to="/">Home</Link>
+            <Link to="/user_medications/">My Meds</Link>
         </li>
         {/* <li>
-            <Link to="login">Login</Link>
+            <Link to="/medications/">Medications</Link>
         </li>
         <li>
             <Link to="signup">SignUp</Link>
-        </li> */}
+        </li>
+    </ul> */}
     </ul>
     </div>
     );

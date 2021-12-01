@@ -1,7 +1,8 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom'
 
 
-function MedCard({medication, updateMed, deleteMed, setSelectedMed}) {
+function MedCard({medication, updateMed, deleteMed}) {
 const {name, description, frequency, image, id} = medication;
 
 const [newDose, setNewDose] = useState("")
@@ -25,18 +26,19 @@ const handleUpdate = (e) => {
         .then(() => deleteMed(medication))
     }
     return (
-        <li onClick={() => setSelectedMed(medication)} className="card">
-            <img src={image} alt={name}/>
+        <div className="card">
+        <Link to={`/medications/${id}`} style={{ textDecoration: 'none' }} >
+            <img src={image} alt={name}/> 
             <h4>{name}</h4>
             <p>{description}</p>
             <p>Frequency: {frequency}</p>
+        </Link>
             <button onClick={() => setVisible(!visible)} className="update">UPDATE</button>
             { visible ? <form onSubmit={handleUpdate}>
                 Dose: <input onChange={(e) => setNewDose(e.target.value)} value={newDose} type="text" placeholder="Dose" name="dose" />
             </form>: null}
             <button onClick={handleDelete} className="delete">DELETE</button>
-        </li>
-
+        </div>
     );
 }
 

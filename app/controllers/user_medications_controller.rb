@@ -22,4 +22,8 @@ class UserMedicationsController < ApplicationController
             render json: {error: "user medication not found"}, status: :not_found
         end
     end
+
+    def user_medication_params
+        params.permit(:dose, :user_id, :medication_id)
+    end
 end

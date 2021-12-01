@@ -8,9 +8,9 @@ function Search({setSearch}) {
        <input
             type="text"
             id="search"
-            placeholder="Type a medication to start search"
+            placeholder="Type a medication"
             onChange={(e) => setSearch(e.target.value)}/>
-    <button className="searchbttn">Search</button>
+    {/* <button className="searchbttn">Search</button> */}
     </div>
     );
 }

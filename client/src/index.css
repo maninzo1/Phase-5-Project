@@ -156,12 +156,12 @@ input:focus {
   flex-direction: column;
   justify-content: flex-end;
 } */
-/* .navbar{
+.navbar{
   list-style-type: none;
   width: 500px;
   display: flex;
   justify-content: space-evenly;
-} */
+}
 
 .searchbar {
   padding: 1rem;
@@ -226,10 +226,12 @@ label {
   flex-direction: column;
   
 }
-.medDetail{
+.med-Detail{
+    
     display: flex;
     align-items: center;
     flex-direction: column;
+    justify-content: center;
    
 }
 /* 

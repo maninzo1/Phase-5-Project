@@ -5,7 +5,7 @@ function MedList({medications, updateMed, deleteMed, setSelectedMed}) {
 
 
     return (
-        <ul className="cards">{medications.map(medication => <MedCard key={medication.id} medication={medication} updateMed={updateMed} deleteMed={deleteMed} setSelectedMed={setSelectedMed}/>)}</ul>
+        <ul className="cards">{medications.map(medication => <MedCard key={medication.name} medication={medication} updateMed={updateMed} deleteMed={deleteMed} setSelectedMed={setSelectedMed}/>)}</ul>
     );
 }
 
