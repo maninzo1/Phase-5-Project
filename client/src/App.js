@@ -5,6 +5,7 @@ import NavBar from "./NavBar";
 import Search from "./Search";
 import MedList from "./MedList";
 import MedDetail from "./MedDetail";
+import MyMeds from "./MyMeds";
 // import UserMeds from "./UserMeds";
 
 
@@ -23,6 +24,60 @@ useEffect(() => {
   // .then((userMedsArr) => setUserMeds(userMedsArr));
 
   }, []);
+
+  
+  const removeMedFromList = (medicationId) => {
+    let userMedId = medications.find(medication => medication.id === medicationId).user_medication.id
+    return fetch(`/user_medications/${userMedId}`, {
+      method: 'DELETE'
+    })
+      .then(res => {
+        if (res.ok) {
+          const updatedMeds = medications.map(medication => {
+            if (medication.id === medicationId) {
+              return {
+                ...medication,
+                user_medication: undefined
+              }
+            } else {
+              return medication
+            }
+          })
+          setMedications(updatedMeds)
+        }
+      })
+  }
+  const addMedToList = (medicationId) => {
+    return fetch('/user_medications', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        medication_id: medicationId
+      })
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json()
+        } else {
+          return res.json().then(errors => Promise.reject(errors))
+        }
+      })
+      .then(userMed => {
+        const updatedMeds = medications.map(medication => {
+          if (medication.id === medicationId) {
+            return {
+              ...medication,
+              user_medication: userMed
+            }
+          } else {
+            return medication
+          }
+        })
+        setMedications(updatedMeds)
+      })
+  }
 
 
 const updateMed = (updatedMed) => {
@@ -54,13 +109,15 @@ const filteredMeds = medications.filter((medObj) => medObj.name.toLowerCase().in
         
           <Route exact path="/">
             <Search setSearch={setSearch} medications={filteredMeds}/>
-            <MedList medications={filteredMeds} updateMed={updateMed} deleteMed={deleteMed} />
+            <MedList medications={filteredMeds} setMedications={setMedications} addMedToList={addMedToList} removeMedFromList={removeMedFromList} updateMed={updateMed} deleteMed={deleteMed} />
           </Route>
 
           <Route path="/medications/:id">
             <MedDetail medications={medications}/>
           </Route>
-
+          <Route path="/user_medications">
+            <MyMeds/>
+          </Route>
           {/* <Route path="/user_medications/">
           {userMeds.map(userMed => <UserMeds key={userMed.dose} userMed={userMed}/>)}
           </Route> */}

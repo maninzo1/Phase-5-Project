@@ -186,6 +186,10 @@ label {
 } */
 
 .cards {
+  display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
   list-style: none;
 }
 
