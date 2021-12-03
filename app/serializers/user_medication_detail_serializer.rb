@@ -1,6 +1,6 @@
 class UserMedicationDetailSerializer < UserMedicationSerializer
-  attributes :id,
-
+  attributes :medication
+  
   belongs_to :user
   belongs_to :medication
 end
