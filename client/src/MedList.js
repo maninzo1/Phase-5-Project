@@ -13,7 +13,7 @@ function MedList({medications, removeMedFromList, addMedToList, updateMed, delet
         }}
    
     return (
-        <div className="cards">{medications.map(medication => ( <h4 ><Link to={`medications/${medication.id}`} className="card-name"><img src={medication.image} alt={medication.name}/> {medication.name}</Link> {addOrRemoveButton(medication)}</h4>))} </div>)
+        <div className="cards">{medications.map(medication => ( <h4 ><Link to={`medications/${medication.id}`} ><img src={medication.image} alt={medication.name}/> {medication.name}</Link> {addOrRemoveButton(medication)}</h4>))} </div>)
 }
 
 

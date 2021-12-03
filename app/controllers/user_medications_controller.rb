@@ -44,7 +44,7 @@ class UserMedicationsController < ApplicationController
     end
 
     def user_medication_params
-        params.permit(:user_id, :medication_id)
+        params.permit(:id, :user_id, :medication_id)
     end
 end
 

@@ -116,7 +116,7 @@ const filteredMeds = medications.filter((medObj) => medObj.name.toLowerCase().in
             <MedDetail medications={medications}/>
           </Route>
           <Route path="/user_medications">
-            <MyMeds/>
+            <MyMeds medications={filteredMeds} addMedToList={addMedToList} removeMedFromList={removeMedFromList} />
           </Route>
           {/* <Route path="/user_medications/">
           {userMeds.map(userMed => <UserMeds key={userMed.dose} userMed={userMed}/>)}
