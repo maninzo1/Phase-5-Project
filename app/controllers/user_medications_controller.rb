@@ -1,7 +1,7 @@
 class UserMedicationsController < ApplicationController
     def index
-        user_medications = UserMedication.all
-        render json: user_medications, status: :ok
+        # user_medications = UserMedication.all
+        render json: current_user.user_medications, status: :ok
     end
     def create
         user_medication = current_user.user_medications.create(user_medication_params)

@@ -1,61 +1,42 @@
 import React from 'react';
-import {useState, useEffect } from 'react';
+import {Link } from 'react';
 // import {useParams} from 'react-router-dom'
 
-function MyMeds() {
-    const [medication, setMedication] = useState([]);
+function MyMeds({myMeds, removeMedFromList}) {
     // const {id} = useParams().id
-    useEffect(() => {
-      fetch(`/user_medications`)
-          .then(res => res.json())
-          .then(medication => setMedication(medication))
-          }, [])
-    // const fetchMedCallback = useCallback(() => {
-    //     fetch(`/user_medications/${id}`, {
-        
-    //     })
-    //       .then(res => res.json())
-    //       .then(medication => setMedication(medication))
-    //   }, [id])
-      
-    //   useEffect(() => {
-    //     fetchMedCallback()
-    //   }, [fetchMedCallback])
-    
-    //   const addOrRemoveButton = (medication) => {
-    //     if (medication.user_medication) {
-    //       return (
-    //         <>
-    //           <button
-    //             onClick={() => removeMedFromList(medication.id).then(() => fetchMedCallback())}
-    //           >
-    //             Remove from Med List
-    //           </button>
-    //         </>
-    //        )
-    //     } else {
-    //       return (
-    //         <button
-    //           onClick={() => addMedToList(medication.id).then(() => fetchMedCallback())}
-    //         >
-    //           Add to Med List
-    //         </button>
-    //       )
-    //     }
-    //   }
-    //       if(!medication){ return <div></div>}
 
+console.log(myMeds);
+
+
+
+   const medCards = myMeds.map(userMed => {
+       return (
+           
+    <div className="med-Detail"> 
+      <h2>You are currently taking:</h2>     
+    <img src={userMed.medication.image} alt={userMed.medication.name}/> 
+   
+   <h3>Name: {userMed.medication.name}</h3>
+       
+   <button className='remove-med' onClick={() => removeMedFromList(userMed.medication.id)}>Remove from List</button>
+    </div>
+
+   )
+})  
+
+
+
+    
+// {myMeds.map(myMed => {
     return (
-        <div className="med-Detail">
-        <h2>You are currently taking:</h2>    
-        <img src={medication.image} alt={medication.name}/> 
-       <h3>{medication.name}</h3>
-       {/* <p>{addOrRemoveButton(medication)}</p> */}
-       <p>Description: {medication.description}</p>
-       <p>Frequency: {medication.frequency}</p>
-        </div>
+     <>
+     {medCards}
+     </>
+      
     )
-    
-}
-
+}  
+// )}
+// }
 export default MyMeds;
+
+ 

@@ -11,8 +11,16 @@ import MyMeds from "./MyMeds";
 
 function App() {
 const [medications, setMedications] = useState([]);
+const [myMeds, setMyMeds] = useState([]);
+
 const [search, setSearch] = useState("")
 // const [userMeds, setUserMeds] = useState([])
+
+useEffect(() => {
+  fetch(`/user_medications`)
+      .then(res => res.json())
+      .then(myMeds => setMyMeds(myMeds))
+      }, [])
 
 useEffect(() => {
   fetch("/medications")
@@ -27,26 +35,21 @@ useEffect(() => {
 
   
   const removeMedFromList = (medicationId) => {
-    let userMedId = medications.find(medication => medication.id === medicationId).user_medication.id
+
+    let userMedId = myMeds.find(myMed => myMed.medication.id === medicationId).id
+    
     return fetch(`/user_medications/${userMedId}`, {
       method: 'DELETE'
     })
       .then(res => {
         if (res.ok) {
-          const updatedMeds = medications.map(medication => {
-            if (medication.id === medicationId) {
-              return {
-                ...medication,
-                user_medication: undefined
-              }
-            } else {
-              return medication
-            }
-          })
-          setMedications(updatedMeds)
+          console.log("SUCCESS");
+          const updatedMeds = myMeds.filter(userMedication => userMedication.id !== userMedId) 
+          setMyMeds(updatedMeds)
         }
       })
   }
+
   const addMedToList = (medicationId) => {
     return fetch('/user_medications', {
       method: 'POST',
@@ -65,19 +68,10 @@ useEffect(() => {
         }
       })
       .then(userMed => {
-        const updatedMeds = medications.map(medication => {
-          if (medication.id === medicationId) {
-            return {
-              ...medication,
-              user_medication: userMed
-            }
-          } else {
-            return medication
-          }
-        })
-        setMedications(updatedMeds)
+        setMyMeds(myMeds => [...myMeds, userMed])
       })
   }
+
 
 
 const updateMed = (updatedMed) => {
@@ -98,7 +92,16 @@ const deleteMed = (deletedMed) => {
   setMedications(newArray)
 }
 
-const filteredMeds = medications.filter((medObj) => medObj.name.toLowerCase().includes(search.toLowerCase()))
+
+const isMedInList = medications.map(med => {
+  if (myMeds.find(myMed => myMed.medication.id === med.id)) {
+    return {...med, onList: true}
+  } else {
+    return {...med, onList: false}
+  } 
+})
+
+const filteredMeds = isMedInList.filter((medObj) => medObj.name.toLowerCase().includes(search.toLowerCase()))
 
 
   return(
@@ -116,7 +119,7 @@ const filteredMeds = medications.filter((medObj) => medObj.name.toLowerCase().in
             <MedDetail medications={medications}/>
           </Route>
           <Route path="/user_medications">
-            <MyMeds medications={filteredMeds} addMedToList={addMedToList} removeMedFromList={removeMedFromList} />
+            <MyMeds myMeds={myMeds} addMedToList={addMedToList} removeMedFromList={removeMedFromList} />
           </Route>
           {/* <Route path="/user_medications/">
           {userMeds.map(userMed => <UserMeds key={userMed.dose} userMed={userMed}/>)}

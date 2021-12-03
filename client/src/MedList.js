@@ -6,14 +6,22 @@ function MedList({medications, removeMedFromList, addMedToList, updateMed, delet
 
 
     const addOrRemoveButton = (medication) => {
-        if (medication.user_medication) {
+        if (medication.onList) {
           return <button onClick={() => removeMedFromList(medication.id)}>Remove from Med List</button>
         } else {
           return <button onClick={() => addMedToList(medication.id)}>Add to Med List</button>
         }}
+
+        console.log(medications);
    
     return (
-        <div className="cards">{medications.map(medication => ( <h4 ><Link to={`medications/${medication.id}`} ><img src={medication.image} alt={medication.name}/> {medication.name}</Link> {addOrRemoveButton(medication)}</h4>))} </div>)
+        <div className="cards">{medications.map(medication => ( 
+        <h4 ><Link to={`medications/${medication.id}`} >
+          <img src={medication.image} alt={medication.name}/> {medication.name}</Link> {addOrRemoveButton(medication)}
+        </h4>)
+          )} 
+        </div>
+        )
 }
 
 
