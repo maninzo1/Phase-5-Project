@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  # resources :medication_notes
-  # resources :takens
+  resources :medication_notes
+  resources :takens
   resources :medications, only:[:index, :show, :update, :destroy] 
   resources :user_medications, only:[:index, :create, :show, :update, :destroy]
   resources :users, only:[:index]

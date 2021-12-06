@@ -1,9 +1,7 @@
 import React from 'react';
-import { Button, Container } from 'react-bootstrap';
+import { Button, Container, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
-
 function MedList({medications, removeMedFromList, addMedToList, updateMed, deleteMed, setSelectedMed}) {
-
 
     const addOrRemoveButton = (medication) => {
         if (medication.onList) {
@@ -11,16 +9,16 @@ function MedList({medications, removeMedFromList, addMedToList, updateMed, delet
         } else {
           return <Button variant="primary" onClick={() => addMedToList(medication.id)}>Add to Med List</Button>
         }}
-
         console.log(medications);
    
     return (
       <Container>
+      {/* <Card> */}
         <div className="cards-container">{medications.map(medication => (
           <div className="cards" > 
         <p ><Link to={`medications/${medication.id}`}>
-          <img src={medication.image} alt={medication.name}/></Link> </p>
-        <p ><Link to={`medications/${medication.id}`}>{medication.name}</Link></p>
+          <Image src={medication.image} alt={medication.name} width="275px"/></Link></p>
+        <p><Link to={`medications/${medication.id}`}>{medication.name}</Link></p>
         <p>{addOrRemoveButton(medication)}</p>
         </div>
         )
@@ -28,12 +26,11 @@ function MedList({medications, removeMedFromList, addMedToList, updateMed, delet
           )} 
         
         </div>
+       {/* </Card> */}
       </Container>  
         )
 }
 
 
-
 export default MedList;
-
 

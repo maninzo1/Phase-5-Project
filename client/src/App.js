@@ -12,7 +12,7 @@ import MyMeds from "./MyMeds";
 function App() {
 const [medications, setMedications] = useState([]);
 const [myMeds, setMyMeds] = useState([]);
-
+// const [takenMeds, setTakenMeds] = useState([])
 const [search, setSearch] = useState("")
 // const [userMeds, setUserMeds] = useState([])
 
@@ -20,16 +20,14 @@ useEffect(() => {
   fetch(`/user_medications`)
       .then(res => res.json())
       .then(myMeds => setMyMeds(myMeds))
-      }, [])
 
-useEffect(() => {
   fetch("/medications")
   .then((r) => r.json())
   .then((medArray) => setMedications(medArray));
   
-  // fetch("/user_medications")
+  // fetch("/takens")
   // .then((r) => r.json())
-  // .then((userMedsArr) => setUserMeds(userMedsArr));
+  // .then((userTakenMeds) => setTakenMeds(userTakenMeds));
 
   }, []);
 
@@ -72,7 +70,7 @@ useEffect(() => {
       })
   }
 
-
+  
 
 const updateMed = (updatedMed) => {
   const updatedArray = medications.map((oldMed) => {
@@ -119,7 +117,7 @@ const filteredMeds = isMedInList.filter((medObj) => medObj.name.toLowerCase().in
             <MedDetail medications={medications}/>
           </Route>
           <Route path="/user_medications">
-            <MyMeds myMeds={myMeds} addMedToList={addMedToList} removeMedFromList={removeMedFromList} />
+          <MyMeds myMeds={myMeds} addMedToList={addMedToList} removeMedFromList={removeMedFromList}/>
           </Route>
           {/* <Route path="/user_medications/">
           {userMeds.map(userMed => <UserMeds key={userMed.dose} userMed={userMed}/>)}
