@@ -1,6 +1,6 @@
 class MedicationNotesController < ApplicationController
     def index
-        # user_medications = UserMedication.all
+        # medication_notes = MedicationNote.all
         render json: current_user.medication_notes, status: :ok
     end
     def create
@@ -49,4 +49,3 @@ class MedicationNotesController < ApplicationController
 end
 
 
-end
