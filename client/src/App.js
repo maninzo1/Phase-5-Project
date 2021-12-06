@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
-// import MedPage from "./MedPage";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from "./NavBar";
 import Search from "./Search";
 import MedList from "./MedList";

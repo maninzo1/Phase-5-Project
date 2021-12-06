@@ -1,7 +1,7 @@
 import React from 'react';
-import {Link } from 'react';
+// import {Link } from 'react';
 // import {useParams} from 'react-router-dom'
-
+import {Button, Card} from 'react-bootstrap'
 function MyMeds({myMeds, removeMedFromList}) {
     // const {id} = useParams().id
 
@@ -12,14 +12,15 @@ console.log(myMeds);
    const medCards = myMeds.map(userMed => {
        return (
            
-    <div className="med-Detail"> 
-      <h2>You are currently taking:</h2>     
-    <img src={userMed.medication.image} alt={userMed.medication.name}/> 
-   
-   <h3>Name: {userMed.medication.name}</h3>
+    <Card style={{ width: '20rem' }}>
+        <Card.Title>You are currently taking:</Card.Title>     
+        <Card.Img variant="top" src={userMed.medication.image} alt={userMed.medication.name}/> 
+        <Card.Body>
+        <Card.Text>Name: {userMed.medication.name}</Card.Text>
        
-   <button className='remove-med' onClick={() => removeMedFromList(userMed.medication.id)}>Remove from List</button>
-    </div>
+        <Button variant="danger" className='remove-med' onClick={() => removeMedFromList(userMed.medication.id)}>Remove from List</Button>
+    </Card.Body>
+    </Card>
 
    )
 })  
