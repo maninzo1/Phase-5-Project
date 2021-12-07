@@ -1,5 +1,5 @@
 class TakenSerializer < ActiveModel::Serializer
-  attributes :id, :user_id, :user_medication_id, :userMedInfo
+  attributes :id, :created_at, :user_id, :user_medication_id, :userMedInfo
   #  :medInfo
 
   belongs_to :user

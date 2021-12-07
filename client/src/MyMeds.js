@@ -3,11 +3,22 @@ import {useState} from 'react';
 // import {useParams} from 'react-router-dom'
 import {Button, Card, Col, Container, Form, Row, Stack} from 'react-bootstrap';
 // import TakenMeds from './TakenMeds';
+import Notes from './Notes'
+import Logs from './Logs'
 
-function MyMeds({userMed, setMyMeds, removeMedFromList, medNotes, setMedNotes, addTakenMed, setTakenMeds}) {
-    const [visible, setVisible] = useState(false)
+function MyMeds({userMed, setMyMeds, removeMedFromList, medNotes, setMedNotes, addTakenMed, setTakenMeds, takenMeds}) {
+    const [toggleNotes, setToggleNotes] = useState(false)
+    const [toggleLog, setToggleLog] = useState(false)
     const [noteFormData, setNoteFormData] = useState({content: ''})
 
+    function handleToggleNotes(){
+        setToggleNotes(toggle => !toggle)
+    }
+
+    
+    function handleToggleLogs(){
+        setToggleLog(toggle => !toggle)
+    }
 
     function handleNoteChange(event) {
         setNoteFormData({
@@ -18,11 +29,14 @@ function MyMeds({userMed, setMyMeds, removeMedFromList, medNotes, setMedNotes, a
 
     function handleNoteSubmit(event) {
         event.preventDefault()
-        setNoteFormData({content: ''})
+        console.log(noteFormData)
+        
         const obj = {
-            "content": event.target[0].value,
+            "content": noteFormData.content,
             "user_medication_id": userMed.id
         }
+
+        setNoteFormData({content: ''})
 
         fetch('/medication_notes', {
             method: 'POST',
@@ -30,10 +44,10 @@ function MyMeds({userMed, setMyMeds, removeMedFromList, medNotes, setMedNotes, a
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(obj)
-        }).then(resp => resp.json()).then(userMedNotes => {
+        }).then(resp => resp.json()).then(userMedNote => {
             setMedNotes(medNotes => [
                 ...medNotes,
-                userMedNotes])
+                userMedNote])
                
             fetch(`/user_medications`)
             .then(resp => resp.json())
@@ -41,9 +55,13 @@ function MyMeds({userMed, setMyMeds, removeMedFromList, medNotes, setMedNotes, a
 
         })
     }
-    
 
-// console.log(userMed)
+
+    const filterMedNotes = medNotes.filter(medNote =>  medNote.user_medication_id === userMed.id )
+
+    const filterTakenMeds = takenMeds.filter(takenMed =>  takenMed.user_medication_id === userMed.id )
+    
+    
 
 // const medCards = myMeds.map(userMed => {
 // console.log(userMed.id)
@@ -58,16 +76,23 @@ function MyMeds({userMed, setMyMeds, removeMedFromList, medNotes, setMedNotes, a
         <Card.Body>
         <Card.Text>Name: {userMed.medication.name}</Card.Text>
         {/* <Card.Text>My Notes:</Card.Text> */}
-        <Stack gap={3} className="col-md-5 mx-auto">
+        <Stack gap={3} className="col-md-8 mx-auto">
         <Button variant="success" className='remove-med' onClick={()=> addTakenMed(userMed.id)}>Taken</Button>
-        <Button variant="primary" className='add-comment' onClick={() => setVisible(!visible)}>Add Notes</Button>
-        { visible ? <Form onSubmit={handleNoteSubmit}>
-            <Form.Group className="mb-3" controlId="formMedNote">
-            <Form.Control onChange={handleNoteChange} as='textarea' rows={3} placeholder="Type your note..." name="content" value={noteFormData.content} type="text"/>
-            </Form.Group>
-            </Form>: null}
+        {/* <Button variant="primary" className='add-comment' onClick={() => setVisible(!visible)}>Add Notes</Button> */}
         <Button variant="danger" className='remove-med' onClick={() => removeMedFromList(userMed.medication.id)}>Remove</Button>
+        <Form onSubmit={handleNoteSubmit}>
+            <Form.Group className="mb-3" controlId="formMedNote">
+            <Form.Control onChange={handleNoteChange} as='textarea' rows={1} placeholder="Type your note..." name="content" value={noteFormData.content} type="text"/>
+            </Form.Group>
+            <Button variant="primary" type="submit">
+              Add Note
+            </Button>
+        </Form>
         </Stack>
+        <button onClick={handleToggleNotes}>{toggleNotes ? "Hide Notes" : "See Notes"}</button>
+        <button onClick={handleToggleLogs}>{toggleLog ? "Hide Logs" : "See Logs" }</button>
+         {toggleNotes ? <Notes medNotes={filterMedNotes}/> : null}
+         {toggleLog ? <Logs takenMeds={filterTakenMeds}/> : null}
         </Card.Body>
         </Card>
         </Col>

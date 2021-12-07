@@ -44,7 +44,7 @@ class MedicationNotesController < ApplicationController
     end
 
     def medication_note_params
-        params.permit(:id, :user_id, :user_medication_id, :content)
+        params.permit(:user_medication_id, :content)
     end
 end
 

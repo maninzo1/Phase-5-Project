@@ -1,5 +1,5 @@
 // import {useState, useEffect} from 'react';
-// import {Card, Row} from 'react-bootstrap'
+import {Card, Col, Container, Row } from 'react-bootstrap'
 
 function TakenMeds({takenMeds}) {
 
@@ -9,23 +9,18 @@ function TakenMeds({takenMeds}) {
 
 
     return (
-        <>
-        <img src={takenMed.userMedInfo.image} alt={takenMed.userMedInfo.name}/>
-        <h3 key={takenMed.id}>Name: {takenMed.userMedInfo.name}</h3>
-        </>
-    // {/* //    <Row xs={4} md={4} className="g-4">
-    // //    <Card style={{ width: '25rem' }}>
-    // //    <Card.Body>
-    // //    <div className="med-Detail">
-    // //        <Card.Img variant="top"src={takenMed.image} alt={takenMed.medication.name}/>
-    // //        <Card.Title>{takenMed.medication.name}</Card.Title>
-    // //        <Card.Text>{takenMed.medication.description}</Card.Text>
-    // //        <Card.Text>Frequency: {takenMed.medication.frequency}</Card.Text>
-    // //   </div> 
-    // //   </Card.Body>
-    // //   </Card>
-    // //   </Row> */}
-    )}
+        <Container>  
+            <Row  xs={4} md={4} className="g-4">       
+            <Col>
+            <Card key={takenMed.id} style={{ width: '20rem' }}>
+            <Card.Text>You took {takenMed.userMedInfo.name} today.</Card.Text>
+            <Card.Img variant="top" src={takenMed.userMedInfo.image} alt={takenMed.userMedInfo.name}/>
+            </Card>
+            </Col>
+            </Row>       
+        </Container>
+ 
+        )}
     );
 
     return (

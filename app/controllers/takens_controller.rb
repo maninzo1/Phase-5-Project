@@ -44,7 +44,7 @@ class TakensController < ApplicationController
     end
 
     def taken_params
-        params.permit(:id, :user_id, :user_medication_id)
+        params.permit(:user_medication_id)
     end
 end
 

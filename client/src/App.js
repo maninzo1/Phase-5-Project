@@ -31,6 +31,10 @@ useEffect(() => {
   .then((r) => r.json())
   .then((userTakenMeds) => setTakenMeds(userTakenMeds));
 
+  fetch('/medication_notes')
+  .then(r => r.json())
+  .then(userMedNotes => setMedNotes(userMedNotes) )
+
   }, []);
 
   
@@ -97,7 +101,6 @@ useEffect(() => {
 
 
   
-  
   const isMedInList = medications.map(med => {
   if (myMeds.find(myMed => myMed.medication.id === med.id)) {
     return {...med, onList: true}
@@ -125,11 +128,11 @@ return(
             <MedDetail medications={medications}/>
           </Route>
           <Route path="/user_medications">
-          <Row xs={3} md={3} className="g-4"> {myMeds.map(userMed => <MyMeds key={userMed.id} userMed={userMed} addMedToList={addMedToList} removeMedFromList={removeMedFromList} addTakenMed={addTakenMed} takenMeds={takenMeds} setMedNotes={setMedNotes} medNotes={medNotes} setMyMeds={setMyMeds}/>)}</Row>
+            <Row xs={3} md={3} className="g-4"> {myMeds.map(userMed => <MyMeds key={userMed.id} userMed={userMed} addMedToList={addMedToList} removeMedFromList={removeMedFromList} addTakenMed={addTakenMed} takenMeds={takenMeds} setMedNotes={setMedNotes} medNotes={medNotes} setMyMeds={setMyMeds}/>)}</Row>
           </Route>
 
           <Route path="/takens/">
-          <TakenMeds takenMeds={takenMeds} setTakenMeds={setTakenMeds} />
+            <TakenMeds takenMeds={takenMeds} setTakenMeds={setTakenMeds} />
           </Route>
           
           {/* <Route path="/medications">
