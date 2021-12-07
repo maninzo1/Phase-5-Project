@@ -138,7 +138,7 @@ const filteredMeds = isMedInList.filter((medObj) => medObj.name.toLowerCase().in
       <Switch> 
         
           <Route exact path="/">
-            <Search setSearch={setSearch} medications={filteredMeds}/>
+          <Row > <Search setSearch={setSearch} medications={filteredMeds}/></Row>
             <MedList medications={filteredMeds} setMedications={setMedications} addMedToList={addMedToList} removeMedFromList={removeMedFromList} updateMed={updateMed} deleteMed={deleteMed} />
           </Route>
 

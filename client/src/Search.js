@@ -1,12 +1,12 @@
 import React from 'react';
-import {Button, Stack, Row, Form} from 'react-bootstrap'
+import {Button, Col, Stack, Row, Form} from 'react-bootstrap'
 
 function Search({setSearch}) {
     return (
-        <Row>
-    <Form.Label column lg={2}>
-      
-    </Form.Label>
+       
+        <Form>
+        <Row >
+          <Col>
         <Stack direction="horizontal" gap={2}>
             <Form.Control className="search"
             type="text"
@@ -23,7 +23,9 @@ function Search({setSearch}) {
     {/* <button className="searchbttn">Search</button> */}
     
     </Stack>
-    </Row>
+            </Col>
+        </Row>
+    </Form>
   
     );
 }

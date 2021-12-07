@@ -47,10 +47,10 @@ function MyMeds({userMed, setMyMeds, removeMedFromList, medNotes, setMedNotes}) 
 
     
        return (
-        <Container>  
-            <Row>       
-                <Col>
-    <Card key={userMed.id} style={{ width: '20rem' }}>
+    <Container>  
+        <Row>       
+        <Col>
+        <Card key={userMed.id} style={{ width: '20rem' }}>
         <Card.Title>You are currently taking:</Card.Title> 
         <Card.Img variant="top" src={userMed.medication.image} alt={userMed.medication.name}/> 
         <Card.Body>
@@ -65,10 +65,10 @@ function MyMeds({userMed, setMyMeds, removeMedFromList, medNotes, setMedNotes}) 
             </Form>: null}
         <Button variant="danger" className='remove-med' onClick={() => removeMedFromList(userMed.medication.id)}>Remove</Button>
         </Stack>
-    </Card.Body>
-    </Card>
-    </Col>
-    </Row>
+        </Card.Body>
+        </Card>
+        </Col>
+        </Row>
     </Container>
    )
   
