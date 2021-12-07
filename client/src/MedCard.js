@@ -1,45 +1,74 @@
-// import { useState } from 'react';
-// import { Link } from 'react-router-dom'
+// function MedCard(){
+    
+        
+// const [commentFormData, setCommentFormData] = useState({content: ''})
 
-
-// function MedCard({medication, updateMed, deleteMed}) {
-// const {name, description, frequency, image, id} = medication;
-
-// const [newDose, setNewDose] = useState("")
-// const [visible, setVisible] = useState("")
-
-// const handleUpdate = (e) => {
-//     e.preventDefault();
-
-//     fetch('/user_medications/'+id, {
-//         method: "PATCH",
-//         headers: {'Content-Type': 'application/json'},
-//         body: JSON.stringify({dose: newDose})
-
+// function handleCommentChange(event) {
+//     setCommentFormData({
+//         ...commentFormData,
+//         [event.target.name]: event.target.value
 //     })
-//     .then(r => r.json())
-//     .then(updatedMed => updateMed(updatedMed))
 // }
 
-//     const handleDelete = () => {
-//         fetch('/user_medications/'+id, {method:"DELETE"})
-//         .then(() => deleteMed(medication))
+// function handleCommentSubmit(plant_id, gardenId, event) {
+//     event.preventDefault()
+//     setCommentFormData({content: ''})
+//     const obj = {
+//         "content": event.target[0].value, 
+//         "user_medication_id": user_medication_id,
+        
 //     }
-//     return (
-//         <div className="card">
-//         <Link to={`/medications/${id}`} style={{ textDecoration: 'none' }} >
-//             <img src={image} alt={name}/> 
-//             <h4>{name}</h4>
-//             <p>{description}</p>
-//             <p>Frequency: {frequency}</p>
-//         </Link>
-//             <button onClick={() => setVisible(!visible)} className="update">UPDATE</button>
-//             { visible ? <form onSubmit={handleUpdate}>
-//                 Dose: <input onChange={(e) => setNewDose(e.target.value)} value={newDose} type="text" placeholder="Dose" name="dose" />
-//             </form>: null}
-//             <button onClick={handleDelete} className="delete">DELETE</button>
-//         </div>
+
+//     fetch(`/medication_notes`, {
+//         method: 'POST',
+//         headers: {
+//             "Content-Type": "application/json"
+//         },
+//         body: JSON.stringify(obj)
+//     }).then((resp => {
+//         if (resp.ok) {
+//             fetch(`/user_medications`).then(resp => resp.json()).then(data => setMedNote(data))
+//         } else {
+//             console.log("error!")
+//         }
+//     }))
+// }
+
+// return(
+// <>
+// </>
 //     );
 // }
 
-// export default MedCard;
+
+
+
+
+//  export default MedCard;
+
+
+// const addNewNote = (newUserMedNote) =>{
+//     setmedNote((prevArray) => [...prevArray, newUserMedNote])
+// }
+
+
+//  const handleSubmit =(e) => {
+//      e.preventDefault();
+//      const newMedNote = {content: content}
+//  }
+
+//  const options = {
+//      headers: {"Content-Type":"application/json"},
+//      method: "POST",
+//      body: JSON.stringify(newMedNote)
+//  }
+
+//  fetch('/medication_notes', options)
+//  .then(r => r.json())
+//  .then(newMedNote => {
+//      addNewNote(newMedNote)
+//      setNewMedNote("")
+//  })
+//  }
+
+

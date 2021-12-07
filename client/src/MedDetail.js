@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom'
-import {Card} from 'react-bootstrap'
+import {Card, Row} from 'react-bootstrap'
 function MedDetail( ) {
     // const {id} =useParams();
     const [med, setMed] = useState("null");
@@ -17,6 +17,7 @@ function MedDetail( ) {
     if (!isLoaded) return <h2>Loading...</h2>;
     
     return (
+        <Row xs={4} md={4} className="g-4">
         <Card style={{ width: '25rem' }}>
         <Card.Body>
         {/* <div className="med-Detail"> */}
@@ -27,6 +28,7 @@ function MedDetail( ) {
        {/* </div>  */}
        </Card.Body>
        </Card>
+       </Row>
     ); 
 }
 export default MedDetail;

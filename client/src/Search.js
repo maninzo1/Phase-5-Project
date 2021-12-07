@@ -1,10 +1,14 @@
 import React from 'react';
-import {Button, Stack, Form} from 'react-bootstrap'
+import {Button, Stack, Row, Form} from 'react-bootstrap'
 
 function Search({setSearch}) {
     return (
+        <Row>
+    <Form.Label column lg={2}>
+      
+    </Form.Label>
         <Stack direction="horizontal" gap={2}>
-            <Form.Control className="me-auto"
+            <Form.Control className="search"
             type="text"
             id="search" placeholder ="Search for medication" onChange={(e) => setSearch(e.target.value)}/>
             <Button variant="primary">Submit</Button>
@@ -19,6 +23,7 @@ function Search({setSearch}) {
     {/* <button className="searchbttn">Search</button> */}
     
     </Stack>
+    </Row>
   
     );
 }

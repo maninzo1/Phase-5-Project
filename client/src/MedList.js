@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Container, Image } from 'react-bootstrap';
+import { Button, Col, Container, Image, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
 function MedList({medications, removeMedFromList, addMedToList, updateMed, deleteMed, setSelectedMed}) {
 
@@ -12,20 +12,23 @@ function MedList({medications, removeMedFromList, addMedToList, updateMed, delet
         console.log(medications);
    
     return (
-      <Container>
+      <Container >
       {/* <Card> */}
-        <div className="cards-container">{medications.map(medication => (
+      <Row xs={4} md={4} className="g-4">{medications.map(medication => (
           <div className="cards" > 
         <p ><Link to={`medications/${medication.id}`}>
           <Image src={medication.image} alt={medication.name} width="275px"/></Link></p>
         <p><Link to={`medications/${medication.id}`}>{medication.name}</Link></p>
         <p>{addOrRemoveButton(medication)}</p>
         </div>
+    
         )
        
           )} 
         
-        </div>
+ 
+      
+        </Row>
        {/* </Card> */}
       </Container>  
         )
