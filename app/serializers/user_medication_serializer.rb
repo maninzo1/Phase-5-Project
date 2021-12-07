@@ -1,5 +1,5 @@
 class UserMedicationSerializer < ActiveModel::Serializer
-  attributes :id, :dose, :medication_id, :user_id
+  attributes :id, :dose, :medication_id, :user_id, :medInfo
  
 
   belongs_to :user

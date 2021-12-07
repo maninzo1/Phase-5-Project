@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Col, Container, Image, Row } from 'react-bootstrap';
+import { Button, Container, Image, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
 function MedList({medications, removeMedFromList, addMedToList, updateMed, deleteMed, setSelectedMed}) {
 
@@ -9,7 +9,7 @@ function MedList({medications, removeMedFromList, addMedToList, updateMed, delet
         } else {
           return <Button variant="primary" onClick={() => addMedToList(medication.id)}>Add to Med List</Button>
         }}
-        console.log(medications);
+        // console.log(medications);
    
     return (
       <Container >

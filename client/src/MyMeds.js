@@ -1,10 +1,13 @@
 import {useState} from 'react';
 // import {Link } from 'react';
 // import {useParams} from 'react-router-dom'
-import {Button, Card, Col, Container, Form, Row, Stack} from 'react-bootstrap'
-function MyMeds({userMed, setMyMeds, removeMedFromList, medNotes, setMedNotes}) {
+import {Button, Card, Col, Container, Form, Row, Stack} from 'react-bootstrap';
+// import TakenMeds from './TakenMeds';
+
+function MyMeds({userMed, setMyMeds, removeMedFromList, medNotes, setMedNotes, addTakenMed, setTakenMeds}) {
     const [visible, setVisible] = useState(false)
     const [noteFormData, setNoteFormData] = useState({content: ''})
+
 
     function handleNoteChange(event) {
         setNoteFormData({
@@ -27,24 +30,23 @@ function MyMeds({userMed, setMyMeds, removeMedFromList, medNotes, setMedNotes}) 
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(obj)
-        }).then(resp => resp.json()).then(data => {
-            setMedNotes(note => note = [
+        }).then(resp => resp.json()).then(userMedNotes => {
+            setMedNotes(medNotes => [
                 ...medNotes,
-                data
-            ], )
+                userMedNotes])
+               
             fetch(`/user_medications`)
             .then(resp => resp.json())
-            .then(data => setMyMeds(data))
+            .then(userMedNotes => setMyMeds(userMedNotes))
 
-            console.log(data)
         })
     }
+    
 
-
-
+// console.log(userMed)
 
 // const medCards = myMeds.map(userMed => {
-
+// console.log(userMed.id)
     
        return (
     <Container>  
@@ -56,7 +58,8 @@ function MyMeds({userMed, setMyMeds, removeMedFromList, medNotes, setMedNotes}) 
         <Card.Body>
         <Card.Text>Name: {userMed.medication.name}</Card.Text>
         {/* <Card.Text>My Notes:</Card.Text> */}
-        <Stack gap={2} className="col-md-5 mx-auto">
+        <Stack gap={3} className="col-md-5 mx-auto">
+        <Button variant="success" className='remove-med' onClick={()=> addTakenMed(userMed.id)}>Taken</Button>
         <Button variant="primary" className='add-comment' onClick={() => setVisible(!visible)}>Add Notes</Button>
         { visible ? <Form onSubmit={handleNoteSubmit}>
             <Form.Group className="mb-3" controlId="formMedNote">
