@@ -1,13 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
-import {Button, Nav, Navbar} from 'react-bootstrap'
+// import { Link } from 'react-router-dom'
+import { Container, Nav, Navbar} from 'react-bootstrap'
 
 function NavBar() {
     return (
-    
-    <Navbar bg="light" expand="lg">   
+        
+    <Navbar className="color-nav" variant="light">   
+    <Container>
      <Nav.Item>
-    <h2><Nav.Link href="/">WhatPill</Nav.Link></h2>
+   <h2> <Navbar.Brand href="/">WhatPill</Navbar.Brand> </h2>
     </Nav.Item>
     <Nav className="justify-content-end">
     <Nav.Item>
@@ -25,8 +26,9 @@ function NavBar() {
         </li>
     </ul> */}
     </Nav>
+    </Container>
     </Navbar>
-    
+ 
     );
 }
 export default NavBar;
