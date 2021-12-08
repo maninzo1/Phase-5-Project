@@ -6,18 +6,25 @@ function NavBar() {
     return (
     
     <Navbar bg="light" expand="lg">   
-    <h2><Nav.Link href="#link"><Link to="/" style={{ textDecoration: 'none'}}>WhatPill</Link></Nav.Link></h2>
-    
-        <Button variant="outline-secondary">
-            <Link to="/user_medications/" style={{ textDecoration: 'none'}}>My Meds</Link>
-        </Button>
-        <Button variant="outline-secondary">
-            <Link to="/takens/" style={{ textDecoration: 'none'}}>My Medication History</Link>
-        </Button>
+     <Nav.Item>
+    <h2><Nav.Link href="/">WhatPill</Nav.Link></h2>
+    </Nav.Item>
+    <Nav className="justify-content-end">
+    <Nav.Item>
+    {/* <Button variant="outline-secondary" size="small"> */}
+        <Nav.Link href="/user_medications/">My Meds</Nav.Link>
+        {/* </Button> */}
+        </Nav.Item>
+        <Nav.Item>
+        {/* <Button variant="outline-secondary"> */}
+            <Nav.Link href="/takens/">Medication Log</Nav.Link>
+        {/* </Button> */}
+        </Nav.Item>
         {/* <li>
             <Link to="signup">SignUp</Link>
         </li>
     </ul> */}
+    </Nav>
     </Navbar>
     
     );

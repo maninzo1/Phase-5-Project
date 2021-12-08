@@ -68,10 +68,10 @@ function MyMeds({userMed, setMyMeds, removeMedFromList, medNotes, setMedNotes, a
     
        return (
     <Container>  
-        <Row >       
-        <Col>
+         <Row  xs= "auto" className="justify-content-md-center">       
+            <Col  xs= "auto">
         <Card key={userMed.id} style={{ width: '18rem' }}>
-        <Card.Title>You are currently taking {userMed.medication.name}</Card.Title> 
+        <Card.Title className="text-center mt-4 mb-4">You are currently taking {userMed.medication.name}</Card.Title> 
         <Card.Img variant="top" src={userMed.medication.image} alt={userMed.medication.name}/> 
         <Card.Body>
         {/* <Card.Text>Name: {userMed.medication.name}</Card.Text> */}
@@ -91,10 +91,12 @@ function MyMeds({userMed, setMyMeds, removeMedFromList, medNotes, setMedNotes, a
             </Stack>
         </Form>
         </Stack>
+        
         <Button variant="outline-dark" size="sm" onClick={handleToggleNotes}> {toggleNotes ? "Hide Notes" : "View Notes"}</Button>
         <Button variant="outline-dark" size="sm" onClick={handleToggleLogs}>{toggleLog ? "Hide Logs" : "View Logs" }</Button>
          {toggleNotes ? <Notes medNotes={filterMedNotes}/> : null}
          {toggleLog ? <Logs takenMeds={filterTakenMeds}/> : null}
+
         </Card.Body>
         </Card>
         </Col>

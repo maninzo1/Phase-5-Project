@@ -132,7 +132,7 @@ return(
           </Route>
 
           <Route path="/takens/">
-            <TakenMeds takenMeds={takenMeds} setTakenMeds={setTakenMeds} />
+            <TakenMeds takenMeds={takenMeds} setTakenMeds={setTakenMeds}/>
           </Route>
           
           {/* <Route path="/medications">

@@ -4,7 +4,7 @@ import {Button, Col,Container, Stack, Row, Form} from 'react-bootstrap'
 function Search({setSearch}) {
     return (
  <Container>
-  {/* <FloatingLabel controlId="floatingInput" className="mb-3"> */}
+  
 <Form >
     <Row className="justify-content-md-center">
         <Col xs={6}>

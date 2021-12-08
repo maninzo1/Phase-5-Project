@@ -5,7 +5,7 @@ function Logs({takenMeds}) {
 
     return (
      <ul>
-         {takenMeds.map(takenMed => <li><Moment >{takenMed.created_at}</Moment></li>)}
+         {takenMeds.map(takenMed => <li>Date Taken: <Moment >{takenMed.created_at}</Moment></li>)}
      </ul>
     );
 }
