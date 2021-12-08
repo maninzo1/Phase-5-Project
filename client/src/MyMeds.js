@@ -68,13 +68,13 @@ function MyMeds({userMed, setMyMeds, removeMedFromList, medNotes, setMedNotes, a
     
        return (
     <Container>  
-        <Row>       
+        <Row >       
         <Col>
-        <Card key={userMed.id} style={{ width: '20rem' }}>
-        <Card.Title>You are currently taking:</Card.Title> 
+        <Card key={userMed.id} style={{ width: '18rem' }}>
+        <Card.Title>You are currently taking {userMed.medication.name}</Card.Title> 
         <Card.Img variant="top" src={userMed.medication.image} alt={userMed.medication.name}/> 
         <Card.Body>
-        <Card.Text>Name: {userMed.medication.name}</Card.Text>
+        {/* <Card.Text>Name: {userMed.medication.name}</Card.Text> */}
         {/* <Card.Text>My Notes:</Card.Text> */}
         <Stack gap={3} className="col-md-8 mx-auto">
         <Button variant="success" className='remove-med' onClick={()=> addTakenMed(userMed.id)}>Taken</Button>
@@ -84,13 +84,15 @@ function MyMeds({userMed, setMyMeds, removeMedFromList, medNotes, setMedNotes, a
             <Form.Group className="mb-3" controlId="formMedNote">
             <Form.Control onChange={handleNoteChange} as='textarea' rows={1} placeholder="Type your note..." name="content" value={noteFormData.content} type="text"/>
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Stack gap={1} className="col-md-8 mx-auto">
+            <Button variant="primary" type="submit" size="sm">
               Add Note
             </Button>
+            </Stack>
         </Form>
         </Stack>
-        <button onClick={handleToggleNotes}>{toggleNotes ? "Hide Notes" : "See Notes"}</button>
-        <button onClick={handleToggleLogs}>{toggleLog ? "Hide Logs" : "See Logs" }</button>
+        <Button variant="outline-dark" size="sm" onClick={handleToggleNotes}> {toggleNotes ? "Hide Notes" : "View Notes"}</Button>
+        <Button variant="outline-dark" size="sm" onClick={handleToggleLogs}>{toggleLog ? "Hide Logs" : "View Logs" }</Button>
          {toggleNotes ? <Notes medNotes={filterMedNotes}/> : null}
          {toggleLog ? <Logs takenMeds={filterTakenMeds}/> : null}
         </Card.Body>

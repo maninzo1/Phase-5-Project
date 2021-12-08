@@ -120,7 +120,7 @@ return(
       <Switch> 
         
           <Route exact path="/">
-          <Row > <Search setSearch={setSearch} medications={filteredMeds}/></Row>
+          <Search setSearch={setSearch} medications={filteredMeds}/>
             <MedList medications={filteredMeds} setMedications={setMedications} addMedToList={addMedToList} removeMedFromList={removeMedFromList} />
           </Route>
 

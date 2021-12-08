@@ -1,22 +1,24 @@
 import React from 'react';
-import {Button, Col, FloatingLabel, Stack, Row, Form} from 'react-bootstrap'
+import {Button, Col,Container, Stack, Row, Form} from 'react-bootstrap'
 
 function Search({setSearch}) {
     return (
-        <FloatingLabel controlId="floatingInput" className="mb-3">
-<Form>
-    <Row className="align-items-center">
-        <Col xs="auto"></Col>
+ <Container>
+  {/* <FloatingLabel controlId="floatingInput" className="mb-3"> */}
+<Form >
+    <Row className="justify-content-md-center">
+        <Col xs={6}>
         <Stack direction="horizontal" gap={2}>
             <Form.Control className="search"
             type="text"
             id="search" placeholder ="Search for medication" onChange={(e) => setSearch(e.target.value)}/>
             <Button variant="primary">Submit</Button>
          </Stack>
+         </Col>
       </Row>
 </Form>
- </FloatingLabel>
-    
+  {/* </FloatingLabel> */}
+ </Container>
     );
 }
 

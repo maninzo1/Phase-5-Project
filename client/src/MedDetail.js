@@ -17,7 +17,7 @@ function MedDetail( ) {
     if (!isLoaded) return <h2>Loading...</h2>;
     
     return (
-        <Row xs={4} md={4} className="g-4">
+        <Row className="justify-content-md-center">
         <Card style={{ width: '25rem' }}>
         <Card.Body>
         {/* <div className="med-Detail"> */}
