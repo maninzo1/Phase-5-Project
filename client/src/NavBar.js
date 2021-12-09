@@ -8,7 +8,7 @@ function NavBar() {
     <Navbar className="color-nav" variant="light">   
     <Container>
      <Nav.Item>
-   <h2> <Navbar.Brand href="/">WhatPill</Navbar.Brand> </h2>
+   <h1> <Navbar.Brand href="/">WhatPill</Navbar.Brand> </h1>
     </Nav.Item>
     <Nav className="justify-content-end">
     <Nav.Item>

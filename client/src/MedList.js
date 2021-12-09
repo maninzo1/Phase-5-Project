@@ -19,8 +19,8 @@ function MedList({medications, removeMedFromList, addMedToList, updateMed, delet
         <Card.Link href ={`medications/${medication.id}`} >
           <Image src={medication.image} alt={medication.name} width="275px"/></Card.Link>
           <Stack >
-        <h6><Card.Link href={`medications/${medication.id}` } text="dark" style={{textDecoration: 'none'}}>{medication.name}</Card.Link></h6>
-        <p>{addOrRemoveButton(medication)}</p>
+        <h5 classname='medlist-name' ><Card.Link  href={`medications/${medication.id}` } text="dark" style={{textDecoration: 'none'}}>{medication.name}</Card.Link></h5>
+        <p className='add-remove-bttn'>{addOrRemoveButton(medication)}</p>
         </Stack>
         </div>
     
