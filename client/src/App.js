@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Row} from 'react-bootstrap';
+import {Col, Container, Row} from 'react-bootstrap';
 import NavBar from "./NavBar";
 import Search from "./Search";
 import MedList from "./MedList";
@@ -120,7 +120,11 @@ return(
       <Switch> 
         
           <Route exact path="/">
+          <Container className="search-bar">
+          <Col>
           <Search setSearch={setSearch} medications={filteredMeds}/>
+          </Col>
+          </Container>
             <MedList medications={filteredMeds} setMedications={setMedications} addMedToList={addMedToList} removeMedFromList={removeMedFromList} />
           </Route>
 

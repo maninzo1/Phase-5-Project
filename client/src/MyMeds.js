@@ -73,6 +73,7 @@ function MyMeds({userMed, setMyMeds, removeMedFromList, medNotes, setMedNotes, a
         <Card key={userMed.id} style={{ width: '18rem' }}>
         <Card.Title className="text-center mt-4 mb-4">You are currently taking {userMed.medication.name}</Card.Title> 
         <Card.Img variant="top" src={userMed.medication.image} alt={userMed.medication.name}/> 
+        {/* <Card.Text>Dose: {userMed.medication.dose}</Card.Text> */}
         <Card.Body>
         {/* <Card.Text>Name: {userMed.medication.name}</Card.Text> */}
         {/* <Card.Text>My Notes:</Card.Text> */}
@@ -91,12 +92,13 @@ function MyMeds({userMed, setMyMeds, removeMedFromList, medNotes, setMedNotes, a
             </Stack>
         </Form>
         </Stack>
-        
+        <p className='toggle-bttns'>
         <Button variant="outline-dark" size="sm" onClick={handleToggleNotes}> {toggleNotes ? "Hide Notes" : "View Notes"}</Button>
         <Button variant="outline-dark" size="sm" onClick={handleToggleLogs}>{toggleLog ? "Hide Logs" : "View Logs" }</Button>
          {toggleNotes ? <Notes medNotes={filterMedNotes}/> : null}
          {toggleLog ? <Logs takenMeds={filterTakenMeds}/> : null}
-
+         </p>
+       
         </Card.Body>
         </Card>
         </Col>
