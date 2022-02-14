@@ -5,7 +5,7 @@
 - Postgresql
 
 ## About 
-WhatApp is a medication application that allows users to keep track of their daily medications. User can search for a specific medication, view medication information in detail, and add or remove medications on their own list.
+WhatApp is a application that allows users to keep track of their daily medications. User can search for a specific medication, view medication information in detail, and add or remove medications on their own list.
 
 <img width="864" alt="2022-02-14 (5)" src="https://user-images.githubusercontent.com/88293240/153938394-928b86e1-ca4f-40d4-8e8d-83e479db7420.png">
 
